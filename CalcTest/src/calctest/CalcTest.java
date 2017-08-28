@@ -14,17 +14,21 @@ public class CalcTest {
         Scanner input = new Scanner(System.in);
         
         int select = 0; // declaring select and setting it == 0
+        boolean isNumber;
         int a, b; // declaring variables for two different numbers
                
-        while(select != 5){
+        do {
         menu(); // calls menu function to display options
         print("\nPlease select an option: ");
          
-        try{
-        select = input.nextInt(); // gets the user's select input
-        }catch(Exception e){
-            System.out.print(e + " Is not a number between 1 & 5\n\n");
-            break;
+        //If statement validates the user input
+        if(input.hasNextInt()){
+            select = input.nextInt(); // gets the user's select input    
+            isNumber = true;
+        }else{
+            println(select + " is not a number.\n");
+            isNumber = false;
+            input.next();
         }
         
         //Switch case options calling different classes
@@ -65,9 +69,10 @@ public class CalcTest {
                 println("Byee!!!!");
                 System.exit(0); // Shut's down the jvm
             default:
-                break;
+                println("Try another number");
+                isNumber = false;
         }
-      }
+      }while(!(isNumber));
         
         
         
